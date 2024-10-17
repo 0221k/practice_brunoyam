@@ -90,8 +90,8 @@ print(round(area(2, 3, 4), 3)) # 2.905
 s = '''It was just cloudy, 
 blowing from the north. gray. - swim!'''
 
-def less_than_five(str):
-	split_words = str.split()
+def less_than_five(words):
+	split_words = words.split()
 	result = []
 	for i in split_words:
 		if len(i) < 5 and i.isalpha():
@@ -105,18 +105,20 @@ print(less_than_five(s))
 # m3 p3 lvl3
 
 lst_number = [56, 9, 11, 2]
-lst_string = list(map(str, lst_number))
 
 def max_sort(lst):
+	lst_string = list(map(str, lst))
 	result = ''
 	for i in range(9, -1, -1):
-		for j in lst:
+		for j in lst_string:
 			if j[0] == str(i):
 				result += j
-				lst.remove(j)
+				lst_string.remove(j)
 	return result
 
-print(max_sort(lst_string))
+
+print(max_sort(lst_number)) # 956211
+print(lst_number) # [56, 9, 11, 2]
 
 # m3 p4 lvl1-lvl2
 
