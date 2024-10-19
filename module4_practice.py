@@ -44,7 +44,7 @@ from random import randint
 random_list1 = [randint(0, 9) for i in range(15)]
 print(random_list1)
 
-def insertiom_sort(unsorted_list):
+def insertion_sort(unsorted_list):
     if len(unsorted_list) <= 1:
         print('Sorted already')
         return
@@ -56,7 +56,7 @@ def insertiom_sort(unsorted_list):
             unsorted_list[j + 1], j = unsorted_list[j], j - 1
         unsorted_list[j + 1] = temp
 
-insertiom_sort(random_list1)
+insertion_sort(random_list1)
 print(random_list1)
 
 # m4 p1 lvl3
