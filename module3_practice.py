@@ -106,19 +106,24 @@ print(less_than_five(s))
 
 lst_number = [56, 9, 11, 2]
 
-def max_sort(lst):
-	lst_string = list(map(str, lst))
-	result = ''
-	for i in range(9, -1, -1):
-		for j in lst_string:
-			if j[0] == str(i):
-				result += j
-				lst_string.remove(j)
-	return result
+def max_sort_comparator(first, second):
+	for digit1, digit2 in zip(str(first), str(second)):
+		if digit1 > digit2:
+			return 1
+		elif digit1 < digit2:
+			return -1
+	return 0
+
+def max_sort(arr):
+	num_list = arr[:]
+	for i in range(len(num_list)):
+		for j in range(0, len(num_list) - i - 1):
+			if max_sort_comparator(num_list[j], num_list[j + 1]) < 0:
+				num_list[j], num_list[j + 1] = num_list[j + 1], num_list[j]
+	return ''.join([str(n) for n in num_list])
 
 
-print(max_sort(lst_number)) # 956211
-print(lst_number) # [56, 9, 11, 2]
+print(max_sort(lst_number), lst_number) # 956211 [56, 9, 11, 2]
 
 # m3 p4 lvl1-lvl2
 
