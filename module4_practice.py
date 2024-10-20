@@ -8,6 +8,10 @@ random_list = list(set(sorted([randint(0, 100) for i in range(30)])))
 print(random_target, random_list)
 
 def binary_search(sorted_list, target, lowest, highest):
+    if len(sorted_list) == 0:
+        print('Array is empty')
+        return -1
+
     if highest >= lowest:
         mid_index = (highest + lowest) // 2
 
@@ -46,8 +50,7 @@ print(random_list1)
 
 def insertion_sort(unsorted_list):
     if len(unsorted_list) <= 1:
-        print('Sorted already')
-        return
+        return -1
 
     for i in range(1, len(unsorted_list)):
         temp, j = unsorted_list[i], i - 1
@@ -74,9 +77,12 @@ graph = {'A': ['B', 'E'],
 #   C       F
 #   D
 
-def breadth_first_search(graph, start, visited = [], queue = deque()):
-    visited.append(start)
-    queue.append(start)
+def breadth_first_search(graph, start):
+    if len(graph) <= 1:
+        return -1
+
+    visited = [start]
+    queue = deque(start)
 
     while queue:
         left = queue.popleft()
