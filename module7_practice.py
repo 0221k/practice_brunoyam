@@ -12,7 +12,7 @@ page = requests.get(url, headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; 
 
 soup = BeautifulSoup(page.content, 'html.parser')
 
-all_tr = soup.find_all('table', {'class': 'mfd-table mfd-currency-table'})[0].find_all('tr')
+all_tr = soup.select('table.mfd-table.mfd-currency-table tr')
 
 # m7 p1 lvl1
 
