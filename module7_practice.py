@@ -17,39 +17,47 @@ all_tr = dates1[0].find_all('tr')
 
 # m7 p1 lvl1
 
-for tr in all_tr:
-	all_td = tr.find_all('td')
-	if len(all_td) > 1:
-		first_td = all_td[0]
-		second_td = all_td[1]
-		print(first_td.get_text(strip=True)[2:])
-		print(second_td.get_text(strip=True))
+def currency_parse(table_rows):
+	for tr in all_tr:
+		all_td = tr.find_all('td')
+		if len(all_td) > 1:
+			first_td = all_td[0]
+			second_td = all_td[1]
+			print(f'{first_td.get_text(strip=True)[2:]}:')
+			print(second_td.get_text(strip=True))
+
+currency_parse(all_tr)
 
 # m7 p1 lvl2
 
 dates = []
 currency = []
 
-for tr in all_tr:
-	all_td = tr.find_all('td')
-	if len(all_td) > 1:
-		first_td = all_td[0]
-		second_td = all_td[1]
+def currency_plot(dates_list, currency_list, tr_list):
+	for tr in tr_list:
+		all_td = tr.find_all('td')
+		if len(all_td) > 1:
+			first_td = all_td[0]
+			second_td = all_td[1]
 
-		date = first_td.get_text(strip=True)[2:]
+			date = first_td.get_text(strip=True)[2:]
 
-		if '*' not in second_td.get_text():
-			dates.append(datetime.strptime(date, '%d.%m.%Y'))
-			currency.append(float(second_td.get_text(strip=True)))
-		else:
-			continue
+			if '*' not in second_td.get_text():
+				dates_list.append(datetime.strptime(date, '%d.%m.%Y'))
+				currency_list.append(float(second_td.get_text(strip=True)))
+			else:
+				continue
 
-fig, ax = plt.subplots()
-ax.plot(dates, currency, marker='o')
-ax.set_xlabel('Date')
-ax.set_ylabel('Currency value')
-ax.set_title('USD Currency')
+def draw_plot(dates_list, currency_list):
+	fig, ax = plt.subplots()
+	ax.plot(dates_list, currency_list, marker='o')
+	ax.set_xlabel('Date')
+	ax.set_ylabel('Currency value')
+	ax.set_title('USD Currency')
 
-ax.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
+	ax.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
 
-plt.show()
+	plt.show()
+
+currency_plot(dates, currency, all_tr)
+draw_plot(dates, currency)
