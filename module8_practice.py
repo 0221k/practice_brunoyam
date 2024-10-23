@@ -49,7 +49,7 @@ cursor.execute('''SELECT Students.name FROM Students
 	WHERE Courses.name = 'python' AND Students.city == 'Spb' ''')
 print(cursor.fetchall())	# [('Max',), ('John',)]
 
-conn.close()	# !!! Закомментить первый уровень задачи перед работой со вторым !!!
+conn.close()	# !!! Закомментить первый уровень задачи перед работой со следующим !!!
 
 ## m8 p1 lvl3
 
@@ -121,9 +121,9 @@ new_student(6, 1, 'Copper', 'Horseman', 192, 'Spb')			# student id = 6, course i
 
 query = add_query(min_age=30)						# Создаём query всех age > 30
 print(some_fetch(query, 'name'))					# Выводим все имена для query: ['Andy', 'Kate', 'Phoebe', 'Copper']
-query = add_query(course_name='python')				# Создаём query всех pyton
+query = add_query(course_name='python')				# Создаём query всех python
 print(some_fetch(query, 'name'))					# ['Max', 'John', 'Andy', 'Copper']
-query = add_query(course_name='python', city='Spb')	# Создаём query всех pyton и Spb
+query = add_query(course_name='python', city='Spb')	# Создаём query всех python и Spb
 print(some_fetch(query, 'name'))					# ['Max', 'John', 'Copper']
 
 conn1.close()
